@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Home() {
   // Fetch both news and scores in parallel
@@ -87,11 +88,20 @@ export default async function Home() {
 
                     <div className="space-y-3">
                       {competitors.map((team) => (
-                        <div key={team.id} className="flex items-center justify-between">
-                          <span className="text-gray-900 font-medium">
-                            {team.team.shortDisplayName}
-                          </span>
-                          <span className="text-2xl font-bold text-gray-900">
+                        <div key={team.id} className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-3 flex-1 min-w-0">
+                            <Image
+                              src={team.team.logo || ""}
+                              alt={`${team.team.shortDisplayName} logo`}
+                              width={32}
+                              height={32}
+                              className="object-contain flex-shrink-0"
+                            />
+                            <span className="text-gray-900 font-medium truncate">
+                              {team.team.shortDisplayName}
+                            </span>
+                          </div>
+                          <span className="text-2xl font-bold text-gray-900 flex-shrink-0">
                             {team.score ?? "-"}
                           </span>
                         </div>
