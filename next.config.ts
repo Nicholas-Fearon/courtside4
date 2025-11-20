@@ -6,7 +6,14 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "a.espncdn.com",
-        pathname: '/**',
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.boxing-data.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

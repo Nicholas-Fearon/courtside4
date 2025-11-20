@@ -5,7 +5,9 @@ export default async function Home() {
   // Fetch both news and scores in parallel
   const [newsRes, scoresRes] = await Promise.all([
     fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/news"),
-    fetch("https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard")
+    fetch(
+      "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"
+    ),
   ]);
 
   // Handle errors
@@ -17,8 +19,12 @@ export default async function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 tracking-tight">NBA Dashboard</h1>
-          <p className="mt-2 text-gray-600">Latest news and scores from around the league</p>
+          <h1 className="text-4xl font-bold text-gray-900 tracking-tight">
+            NBA Dashboard
+          </h1>
+          <p className="mt-2 text-gray-600">
+            Latest news and scores from around the league
+          </p>
         </div>
 
         {/* Latest News Section */}
@@ -26,14 +32,14 @@ export default async function Home() {
           <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">
             Latest News
           </h2>
-          
+
           {!newsData ? (
             <p className="text-gray-500">Failed to load news.</p>
           ) : (
             <div className="space-y-3">
               {newsData.articles.slice(0, 5).map((article) => (
-                <article 
-                  key={article.id} 
+                <article
+                  key={article.id}
                   className="bg-white border border-gray-100 rounded-lg p-6 hover:border-gray-300 transition-colors"
                 >
                   <h3 className="text-lg font-semibold text-gray-900 mb-2 leading-snug">
@@ -49,8 +55,18 @@ export default async function Home() {
                     className="text-blue-600 hover:text-blue-700 text-sm font-medium inline-flex items-center gap-1"
                   >
                     Read article
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </Link>
                 </article>
@@ -64,7 +80,7 @@ export default async function Home() {
           <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">
             Latest Scores
           </h2>
-          
+
           {!scoresData ? (
             <p className="text-gray-500">Failed to load scores.</p>
           ) : (
@@ -88,20 +104,23 @@ export default async function Home() {
 
                     <div className="space-y-3">
                       {competitors.map((team) => (
-                        <div key={team.id} className="flex items-center justify-between gap-3">
+                        <div
+                          key={team.id}
+                          className="flex items-center justify-between gap-3"
+                        >
                           <div className="flex items-center gap-3 flex-1 min-w-0">
                             <Image
                               src={team.team.logo || ""}
                               alt={`${team.team.shortDisplayName} logo`}
                               width={32}
                               height={32}
-                              className="object-contain flex-shrink-0"
+                              className="object-contain shrink-0"
                             />
                             <span className="text-gray-900 font-medium truncate">
                               {team.team.shortDisplayName}
                             </span>
                           </div>
-                          <span className="text-2xl font-bold text-gray-900 flex-shrink-0">
+                          <span className="text-2xl font-bold text-gray-900 shrink-0">
                             {team.score ?? "-"}
                           </span>
                         </div>
@@ -111,8 +130,18 @@ export default async function Home() {
                     <div className="mt-4 pt-4 border-t border-gray-100">
                       <span className="text-blue-600 text-sm font-medium inline-flex items-center gap-1">
                         View details
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
                         </svg>
                       </span>
                     </div>
